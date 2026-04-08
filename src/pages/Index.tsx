@@ -26,9 +26,9 @@ const howItWorks = [
 ];
 
 const learningPaths = [
-  { title: 'Software Engineering', level: 'Beginner → Expert', duration: '6 months', learners: '12,400', img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&q=80', color: 'from-blue-500 to-cyan-500' },
-  { title: 'Product Management', level: 'Intermediate', duration: '4 months', learners: '8,200', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80', color: 'from-purple-500 to-pink-500' },
-  { title: 'Data Science & AI', level: 'Beginner → Advanced', duration: '8 months', learners: '9,600', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80', color: 'from-green-500 to-emerald-500' },
+  { title: 'Software Engineering (SDE)', level: 'Beginner → Expert', duration: '6 months', learners: '12,400', img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80', accentColor: '#3B82F6', gradient: 'from-blue-700/85 via-blue-900/70 to-slate-900/95', skills: ['DSA', 'System Design', 'FAANG'], jobRate: 94, modules: 24, featured: true },
+  { title: 'Data Science & ML', level: 'Intermediate', duration: '8 months', learners: '9,600', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80', accentColor: '#A855F7', gradient: 'from-purple-700/85 via-purple-900/70 to-slate-900/95', skills: ['Python', 'ML', 'Deep Learning'], jobRate: 89, modules: 32, featured: false },
+  { title: 'Product Management', level: 'Intermediate', duration: '4 months', learners: '8,200', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80', accentColor: '#22C55E', gradient: 'from-green-700/85 via-green-900/70 to-slate-900/95', skills: ['Strategy', 'Case Studies', 'Analytics'], jobRate: 86, modules: 18, featured: false },
 ];
 
 const mentors = [
@@ -290,28 +290,87 @@ const Index = () => {
               View all paths <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {learningPaths.map((path, i) => (
-              <div key={i} className="group rounded-2xl overflow-hidden bg-card border border-border card-hover">
-                <div className="relative h-48 overflow-hidden">
-                  <img src={path.img} alt={path.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${path.color} opacity-40`} />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 glass text-white text-xs font-medium rounded-full">{path.level}</span>
+          {/* Featured layout: 1 large card left + 2 stacked right */}
+          <div className="grid lg:grid-cols-5 gap-5">
+            {/* Featured Card */}
+            {learningPaths.filter(p => p.featured).map((path, i) => (
+              <div key={i} className="lg:col-span-3 group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/20">
+                <div className="absolute left-0 top-0 bottom-0 w-1 group-hover:w-1.5 rounded-l-2xl transition-all duration-300" style={{ background: path.accentColor }} />
+                {/* Image */}
+                <div className="relative h-52 overflow-hidden">
+                  <img src={path.img} alt={path.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className={`absolute inset-0 bg-gradient-to-b ${path.gradient}`} />
+                  {/* Badges */}
+                  <div className="absolute top-4 left-5 flex items-center gap-2">
+                    <span className="text-white text-xs font-semibold bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10">{path.level}</span>
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: `${path.accentColor}25`, color: path.accentColor, border: `1px solid ${path.accentColor}40` }}>⭐ Most Popular</span>
+                  </div>
+                  {/* Job placement bar */}
+                  <div className="absolute bottom-4 left-5 right-5">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-white/70 text-xs">Job Placement Rate</span>
+                      <span className="font-bold text-sm" style={{ color: path.accentColor }}>{path.jobRate}%</span>
+                    </div>
+                    <div className="h-1.5 bg-white/20 rounded-full overflow-hidden">
+                      <div className="h-full rounded-full" style={{ width: `${path.jobRate}%`, background: path.accentColor }} />
+                    </div>
                   </div>
                 </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-foreground text-lg mb-3">{path.title}</h3>
-                  <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                    <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {path.duration}</span>
-                    <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5" /> {path.learners} learners</span>
+                {/* Content */}
+                <div className="p-5 pl-6">
+                  <h3 className="font-bold text-foreground text-xl mb-2 group-hover:text-green-500 transition-colors">{path.title}</h3>
+                  {/* Skill tags */}
+                  <div className="flex gap-1.5 mb-4">
+                    {path.skills.map(s => (
+                      <span key={s} className="px-2.5 py-1 text-xs font-medium rounded-lg border" style={{ color: path.accentColor, borderColor: `${path.accentColor}35`, background: `${path.accentColor}10` }}>{s}</span>
+                    ))}
                   </div>
-                  <Link to="/learning-paths" className="w-full btn-primary text-sm text-center block">
-                    Start Path
+                  <div className="flex items-center gap-5 text-sm text-muted-foreground mb-4">
+                    <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> {path.duration}</span>
+                    <span className="flex items-center gap-1.5"><BookOpen className="w-3.5 h-3.5" /> {path.modules} modules</span>
+                    <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> {path.learners} learners</span>
+                  </div>
+                  <Link to="/learning-paths" className="inline-flex items-center gap-2 font-semibold text-sm px-6 py-2.5 rounded-xl text-white transition-all duration-200 hover:opacity-90" style={{ background: path.accentColor }}>
+                    Start Path <ChevronRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>
             ))}
+
+            {/* Stack of 2 smaller cards */}
+            <div className="lg:col-span-2 flex flex-col gap-5">
+              {learningPaths.filter(p => !p.featured).map((path, i) => (
+                <div key={i} className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/15 flex-1">
+                  <div className="absolute left-0 top-0 bottom-0 w-1 group-hover:w-1.5 rounded-l-2xl transition-all duration-300" style={{ background: path.accentColor }} />
+                  {/* Image */}
+                  <div className="relative h-32 overflow-hidden">
+                    <img src={path.img} alt={path.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <div className={`absolute inset-0 bg-gradient-to-b ${path.gradient}`} />
+                    <div className="absolute top-3 left-4">
+                      <span className="text-white text-xs font-semibold bg-black/40 backdrop-blur-sm px-2.5 py-0.5 rounded-full border border-white/10">{path.level}</span>
+                    </div>
+                    <div className="absolute bottom-3 right-4">
+                      <span className="text-xs font-bold" style={{ color: path.accentColor }}>{path.jobRate}% placed</span>
+                    </div>
+                  </div>
+                  {/* Content */}
+                  <div className="p-4 pl-5">
+                    <h3 className="font-bold text-foreground mb-2 group-hover:text-green-500 transition-colors">{path.title}</h3>
+                    <div className="flex gap-1 mb-3">
+                      {path.skills.slice(0, 2).map(s => (
+                        <span key={s} className="px-2 py-0.5 text-[10px] font-medium rounded-md border" style={{ color: path.accentColor, borderColor: `${path.accentColor}35`, background: `${path.accentColor}10` }}>{s}</span>
+                      ))}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="w-3 h-3" /> {path.duration}</span>
+                      <Link to="/learning-paths" className="text-xs font-semibold px-3 py-1.5 rounded-lg text-white transition-all" style={{ background: path.accentColor }}>
+                        Start →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
