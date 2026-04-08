@@ -67,7 +67,7 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       scrolled
-        ? 'bg-background/92 backdrop-blur-xl border-b border-border/60 shadow-[0_1px_24px_rgb(0_0_0_/_0.06)]'
+        ? 'bg-slate-900/96 backdrop-blur-xl border-b border-slate-700/50 shadow-[0_2px_32px_rgb(0_0_0_/_0.18)]'
         : 'bg-transparent'
     }`}>
       {/* Top announcement bar */}
@@ -97,15 +97,15 @@ const Navbar = () => {
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center">
-            <div className="flex items-center gap-0.5 bg-muted/60 backdrop-blur-sm rounded-2xl px-1.5 py-1.5 border border-border/50">
+            <div className="flex items-center gap-0.5 bg-white/8 backdrop-blur-sm rounded-2xl px-1.5 py-1.5 border border-white/10">
               {navLinks.map(link => (
                 <Link
                   key={link.path}
                   to={link.path}
                   className={`relative px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                     isActive(link.path)
-                      ? 'text-green-600 dark:text-green-400 bg-background shadow-sm border border-border/50'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-background/70'
+                      ? 'text-green-400 bg-white/12 shadow-sm border border-white/15'
+                      : 'text-slate-300 hover:text-white hover:bg-white/8'
                   }`}
                 >
                   {link.label}
@@ -122,7 +122,7 @@ const Navbar = () => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="relative w-9 h-9 flex items-center justify-center rounded-xl bg-muted/80 hover:bg-muted border border-border/50 transition-all duration-200 hover:shadow-sm"
+              className="relative w-9 h-9 flex items-center justify-center rounded-xl bg-white/8 hover:bg-white/14 border border-white/12 transition-all duration-200 hover:shadow-sm"
               aria-label="Toggle theme"
             >
               <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-transparent to-muted/30" />
@@ -136,15 +136,15 @@ const Navbar = () => {
               <div className="relative" data-dropdown>
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-xl bg-muted/80 hover:bg-muted border border-border/50 transition-all duration-200 hover:shadow-sm"
+                  className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-xl bg-white/8 hover:bg-white/14 border border-white/12 transition-all duration-200 hover:shadow-sm"
                 >
                   <img
                     src={user.avatar || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face'}
                     alt={user.name}
                     className="w-7 h-7 rounded-lg object-cover ring-2 ring-green-500/30"
                   />
-                  <span className="hidden md:block text-sm font-medium">{user.name.split(' ')[0]}</span>
-                  <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+                  <span className="hidden md:block text-sm font-medium text-slate-200">{user.name.split(' ')[0]}</span>
+                  <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {dropdownOpen && (
@@ -205,7 +205,7 @@ const Navbar = () => {
               <div className="hidden sm:flex items-center gap-2">
                 <Link
                   to="/login"
-                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-xl hover:bg-muted/60"
+                  className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors rounded-xl hover:bg-white/8"
                 >
                   Sign in
                 </Link>
