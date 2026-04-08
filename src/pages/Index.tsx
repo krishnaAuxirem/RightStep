@@ -69,91 +69,166 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden noise-overlay">
+        {/* Background */}
         <div className="absolute inset-0">
-          <img src={heroBg} alt="Hero" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 hero-gradient opacity-90" />
+          <img src={heroBg} alt="Hero" className="w-full h-full object-cover scale-105" />
+          <div className="absolute inset-0 hero-gradient opacity-95" />
+          {/* Radial glow spots */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1.5s' }} />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-24 pb-16 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-28 pb-20 w-full">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
             {/* Left */}
             <div className="animate-slide-in-left">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full text-green-400 text-sm font-medium mb-6">
-                <Zap className="w-4 h-4" />
-                India's #1 Career Growth Platform
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-semibold mb-7 border border-green-500/30 bg-green-500/10 backdrop-blur-sm text-green-400" style={{ letterSpacing: '0.04em' }}>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                </span>
+                INDIA'S #1 CAREER GROWTH PLATFORM
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] mb-6 tracking-tight">
                 Take the{' '}
-                <span className="text-gradient">Right Steps</span>
-                {' '}Toward Your Dream Career
+                <span className="text-shimmer">Right Steps</span>
+                <br className="hidden sm:block" />
+                {' '}Toward Your
+                <br />
+                Dream Career
               </h1>
-              <p className="text-lg text-slate-300 leading-relaxed mb-8 max-w-xl">
-                Structured learning paths, expert mentorship, and goal tracking — everything you need to accelerate your career and personal growth journey.
+
+              <p className="text-lg text-slate-300/90 leading-relaxed mb-9 max-w-lg">
+                Structured learning paths, expert mentorship, and goal tracking — everything you need to accelerate your career and personal growth.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                <Link to="/register" className="btn-primary flex items-center justify-center gap-2 text-base">
-                  Start Free Trial <ArrowRight className="w-5 h-5" />
+
+              <div className="flex flex-col sm:flex-row gap-3 mb-10">
+                <Link to="/register" className="btn-primary flex items-center justify-center gap-2 text-base px-7 py-3.5">
+                  Start Free Trial <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link to="/features" className="btn-secondary flex items-center justify-center gap-2 text-base border-white/30 text-white hover:bg-white/10 hover:border-white/50">
-                  <Play className="w-5 h-5" /> Watch Demo
+                <Link to="/features" className="flex items-center justify-center gap-2 text-base font-semibold px-6 py-3.5 rounded-xl border border-white/20 text-white/90 hover:bg-white/10 hover:border-white/40 transition-all duration-200 backdrop-blur-sm">
+                  <div className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+                    <Play className="w-3.5 h-3.5 ml-0.5" />
+                  </div>
+                  Watch Demo
                 </Link>
               </div>
-              <div className="flex flex-wrap gap-4">
-                {['No credit card', '14-day free trial', 'Cancel anytime'].map(t => (
-                  <div key={t} className="flex items-center gap-1.5 text-slate-400 text-sm">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    {t}
+
+              {/* Trust indicators */}
+              <div className="flex flex-wrap gap-x-6 gap-y-2">
+                {[
+                  { icon: CheckCircle, label: 'No credit card' },
+                  { icon: CheckCircle, label: '14-day free trial' },
+                  { icon: CheckCircle, label: 'Cancel anytime' },
+                ].map(t => (
+                  <div key={t.label} className="flex items-center gap-1.5 text-slate-400 text-sm">
+                    <t.icon className="w-3.5 h-3.5 text-green-400" />
+                    {t.label}
                   </div>
                 ))}
+              </div>
+
+              {/* Social proof */}
+              <div className="mt-8 pt-8 border-t border-white/10 flex items-center gap-4">
+                <div className="flex -space-x-2.5">
+                  {[
+                    'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face',
+                    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face',
+                    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=40&h=40&fit=crop&crop=face',
+                    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face',
+                  ].map((src, i) => (
+                    <img key={i} src={src} alt="" className="w-9 h-9 rounded-full border-2 border-slate-900 object-cover" />
+                  ))}
+                </div>
+                <div>
+                  <div className="flex items-center gap-0.5 mb-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-slate-400 text-xs">Loved by <span className="text-white font-semibold">50,000+</span> professionals</p>
+                </div>
               </div>
             </div>
 
             {/* Right - Slider */}
-            <div className="animate-slide-in-right hidden md:block">
-              <div className="h-[480px] lg:h-[520px]">
+            <div className="animate-slide-in-right hidden md:block relative">
+              {/* Glow behind slider */}
+              <div className="absolute inset-0 bg-green-500/8 rounded-3xl blur-2xl scale-110" />
+              <div className="relative h-[480px] lg:h-[530px]">
                 <HeroSlider />
               </div>
-              {/* Floating cards */}
-              <div className="absolute -bottom-4 -left-4 glass rounded-2xl p-3 animate-float hidden lg:flex items-center gap-3">
-                <div className="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center">
+
+              {/* Floating card - bottom left */}
+              <div className="absolute -bottom-5 -left-8 glass-card rounded-2xl p-3.5 animate-float hidden lg:flex items-center gap-3 border border-white/10 shadow-xl">
+                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center shrink-0">
                   <Award className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <p className="text-white text-xs font-semibold">Goal Achieved!</p>
+                  <p className="text-white text-xs font-bold">Goal Achieved!</p>
                   <p className="text-slate-300 text-xs">Software Engineer @ Google</p>
+                </div>
+              </div>
+
+              {/* Floating card - top right */}
+              <div className="absolute -top-4 -right-6 glass-card rounded-2xl p-3 animate-float-delayed hidden lg:flex items-center gap-2.5 border border-white/10 shadow-xl">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-lg flex items-center justify-center shrink-0">
+                  <TrendingUp className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <p className="text-white text-xs font-bold">+340%</p>
+                  <p className="text-slate-300 text-[10px]">Skill Growth</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         {/* Wave */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 80L60 74.7C120 69.3 240 58.7 360 58.7C480 58.7 600 69.3 720 74.7C840 80 960 80 1080 74.7C1200 69.3 1320 58.7 1380 53.3L1440 48V80H0Z" fill="hsl(var(--background))" />
+          <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0 100L48 91.3C96 82.7 192 65.3 288 61.3C384 57.3 480 65.7 576 70.3C672 75 768 75 864 68.3C960 61.7 1056 48.3 1152 44.7C1248 41 1344 47 1392 50L1440 53V100H0Z" fill="hsl(var(--background))" />
           </svg>
         </div>
       </section>
 
       {/* Features */}
-      <section className="section-padding bg-background">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <span className="text-green-500 text-sm font-semibold uppercase tracking-widest">Why RightStep</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2 mb-4">
-              Everything You Need to <span className="text-gradient">Succeed</span>
+      <section className="section-padding bg-background relative overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 dot-pattern opacity-60" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-48 spotlight" />
+
+        <div className="relative max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="badge-green mb-4 mx-auto">Why RightStep</span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-4 mb-4">
+              Everything You Need to{' '}
+              <span className="text-gradient">Succeed</span>
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              A complete ecosystem designed to take you from where you are to where you want to be — step by step.
+            <p className="text-muted-foreground max-w-xl mx-auto text-lg">
+              A complete ecosystem designed to take you from where you are to where you want to be.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map((f, i) => (
-              <div key={i} className="group p-6 bg-card border border-border rounded-2xl card-hover">
-                <div className="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-green-500 transition-colors">
-                  <f.icon className="w-6 h-6 text-green-500 group-hover:text-white transition-colors" />
+              <div key={i} className="group relative p-6 bg-card border border-border rounded-2xl card-premium overflow-hidden">
+                {/* Hover glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-green-500/0 to-green-500/0 group-hover:from-green-500/3 group-hover:to-emerald-500/5 transition-all duration-500 rounded-2xl" />
+                {/* Icon */}
+                <div className="relative w-12 h-12 mb-5">
+                  <div className="absolute inset-0 bg-green-500/15 rounded-xl blur-sm group-hover:blur-md transition-all" />
+                  <div className="relative w-12 h-12 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/20 border border-green-500/20 rounded-xl flex items-center justify-center group-hover:border-green-500/40 transition-colors">
+                    <f.icon className="w-5.5 h-5.5 text-green-600 dark:text-green-400" />
+                  </div>
                 </div>
-                <h3 className="font-semibold text-foreground mb-2">{f.title}</h3>
+                <h3 className="font-semibold text-foreground mb-2 text-base tracking-tight">{f.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-green-500/5 to-transparent rounded-2xl" />
               </div>
             ))}
           </div>
@@ -161,26 +236,38 @@ const Index = () => {
       </section>
 
       {/* How It Works */}
-      <section className="section-padding bg-muted/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <span className="text-green-500 text-sm font-semibold uppercase tracking-widest">Process</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2 mb-4">
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-muted/40 to-muted/20" />
+        <div className="absolute inset-0 grid-pattern opacity-40" />
+
+        <div className="relative max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="badge-green mb-4 mx-auto">Process</span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-4 mb-4">
               How <span className="text-gradient">RightStep</span> Works
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">Four simple steps to accelerate your career growth journey</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {howItWorks.map((step, i) => (
-              <div key={i} className="relative text-center">
+              <div key={i} className="relative">
+                {/* Connector line */}
                 {i < howItWorks.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-green-500/50 to-transparent" />
-                )}
-                <div className="relative z-10 inline-flex flex-col items-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center text-white text-xl font-bold mb-4 shadow-lg shadow-green-500/25">
-                    {step.step}
+                  <div className="hidden lg:flex absolute top-8 left-[calc(50%+2rem)] right-0 items-center z-0">
+                    <div className="flex-1 h-px bg-gradient-to-r from-green-500/40 to-border" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500/40 shrink-0" />
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">{step.title}</h3>
+                )}
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  {/* Step number */}
+                  <div className="relative mb-5">
+                    <div className="absolute inset-0 bg-green-500/25 rounded-2xl blur-lg" />
+                    <div className="relative w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center text-white text-xl font-bold shadow-lg" style={{ boxShadow: '0 8px 24px rgb(34 197 94 / 0.3)' }}>
+                      {step.step}
+                    </div>
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-2 text-base">{step.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
                 </div>
               </div>
@@ -268,29 +355,40 @@ const Index = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-green-400 text-sm font-semibold uppercase tracking-widest">Testimonials</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mt-2 mb-3">
-              Success <span className="text-gradient">Stories</span>
+      <section className="section-padding relative overflow-hidden noise-overlay">
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #060D1A 0%, #0A1A3D 40%, #061C16 70%, #080E22 100%)' }} />
+        {/* Glow orbs */}
+        <div className="absolute top-0 left-1/4 w-72 h-72 bg-green-500/8 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-60 h-60 bg-blue-600/8 rounded-full blur-3xl" />
+
+        <div className="relative max-w-7xl mx-auto">
+          <div className="text-center mb-14">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full border border-green-500/25 bg-green-500/10 text-green-400 mb-4" style={{ letterSpacing: '0.04em' }}>
+              Testimonials
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mt-4 mb-3">
+              Real <span className="text-gradient">Success</span> Stories
             </h2>
-            <p className="text-slate-400">Real results from real people</p>
+            <p className="text-slate-400 text-lg">From students to top companies — real transformations</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+
+          <div className="grid md:grid-cols-3 gap-5">
             {testimonials.map((t, i) => (
-              <div key={i} className="glass rounded-2xl p-6">
-                <Quote className="w-8 h-8 text-green-400 mb-4" />
-                <p className="text-slate-300 text-sm leading-relaxed mb-6">"{t.text}"</p>
-                <div className="flex items-center gap-3">
-                  <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-full object-cover" />
+              <div key={i} className="glass-card rounded-2xl p-6 hover:border-white/20 transition-all duration-300 hover:-translate-y-1" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+                {/* Stars first */}
+                <div className="flex gap-0.5 mb-4">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} className="w-3.5 h-3.5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <Quote className="w-7 h-7 text-green-400/60 mb-3" />
+                <p className="text-slate-300 text-sm leading-relaxed mb-6">&ldquo;{t.text}&rdquo;</p>
+                <div className="flex items-center gap-3 pt-4 border-t border-white/8">
+                  <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-xl object-cover ring-2 ring-green-500/20" />
                   <div>
                     <p className="font-semibold text-white text-sm">{t.name}</p>
                     <p className="text-slate-400 text-xs">{t.role}</p>
                   </div>
-                </div>
-                <div className="flex gap-0.5 mt-3">
-                  {[...Array(5)].map((_, j) => <Star key={j} className="w-3.5 h-3.5 text-yellow-400 fill-current" />)}
                 </div>
               </div>
             ))}
@@ -299,41 +397,90 @@ const Index = () => {
       </section>
 
       {/* Pricing */}
-      <section className="section-padding bg-background">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-green-500 text-sm font-semibold uppercase tracking-widest">Pricing</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2 mb-3">
+      <section className="section-padding bg-background relative overflow-hidden">
+        <div className="absolute inset-0 dot-pattern opacity-50" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-64 spotlight" />
+
+        <div className="relative max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <span className="badge-green mb-4 mx-auto">Pricing</span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-4 mb-3">
               Simple, <span className="text-gradient">Transparent</span> Pricing
             </h2>
-            <p className="text-muted-foreground">Invest in your growth — choose a plan that fits your journey</p>
+            <p className="text-muted-foreground text-lg">Invest in your growth — choose a plan that fits your journey</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+
+          <div className="grid md:grid-cols-3 gap-5 items-start">
             {pricingPlans.map((plan, i) => (
-              <div key={i} className={`relative p-6 bg-card rounded-2xl border-2 ${plan.color} ${i === 1 ? 'scale-105 shadow-xl shadow-green-500/10' : ''} card-hover`}>
+              <div
+                key={i}
+                className={`relative rounded-2xl border-2 overflow-hidden transition-all duration-300 ${
+                  i === 1
+                    ? 'border-green-500 shadow-2xl shadow-green-500/15 md:-mt-4 md:mb-4'
+                    : 'border-border hover:border-green-500/40 hover:shadow-xl hover:shadow-black/5'
+                }`}
+              >
+                {/* Popular card bg */}
+                {i === 1 && (
+                  <div className="absolute inset-0 bg-gradient-to-b from-green-500/4 to-transparent" />
+                )}
+
+                {/* Badge */}
                 {plan.badge && (
-                  <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-semibold text-white ${i === 1 ? 'bg-green-500' : 'bg-blue-500'}`}>
-                    {plan.badge}
+                  <div className={`absolute top-0 left-0 right-0 text-center py-1.5 text-xs font-bold tracking-wide text-white ${
+                    i === 1
+                      ? 'bg-gradient-to-r from-green-500 to-emerald-500'
+                      : 'bg-gradient-to-r from-blue-500 to-cyan-500'
+                  }`}>
+                    ★ {plan.badge}
                   </div>
                 )}
-                <h3 className="font-bold text-foreground text-lg mb-2">{plan.name}</h3>
-                <div className="mb-6">
-                  <span className="text-3xl font-bold text-foreground">₹{plan.price.toLocaleString()}</span>
-                  <span className="text-muted-foreground text-sm">/{plan.period}</span>
+
+                <div className={`relative p-6 bg-card ${plan.badge ? 'pt-10' : ''}`}>
+                  <div className="mb-5">
+                    <h3 className="font-bold text-foreground text-lg mb-1">{plan.name}</h3>
+                    <p className="text-muted-foreground text-xs">Per user, billed monthly</p>
+                  </div>
+
+                  <div className="mb-6 pb-6 border-b border-border">
+                    <div className="flex items-end gap-1">
+                      <span className="text-4xl font-bold text-foreground tracking-tight">₹{plan.price.toLocaleString()}</span>
+                      <span className="text-muted-foreground text-sm mb-1">/ {plan.period}</span>
+                    </div>
+                    {i === 1 && (
+                      <p className="text-green-500 text-xs font-medium mt-1">Save 20% with annual billing</p>
+                    )}
+                  </div>
+
+                  <ul className="space-y-3 mb-7">
+                    {plan.features.map((f, j) => (
+                      <li key={j} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                        <div className="w-4 h-4 rounded-full bg-green-500/15 flex items-center justify-center shrink-0 mt-0.5">
+                          <CheckCircle className="w-2.5 h-2.5 text-green-500" />
+                        </div>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    to="/register"
+                    className={`block text-center font-semibold py-3 rounded-xl transition-all duration-200 text-sm ${
+                      i === 1
+                        ? 'btn-primary'
+                        : 'border-2 border-border text-foreground hover:border-green-500 hover:text-green-500 hover:bg-green-500/5'
+                    }`}
+                  >
+                    Get Started →
+                  </Link>
                 </div>
-                <ul className="space-y-2.5 mb-6">
-                  {plan.features.map((f, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /> {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link to="/register" className={`block text-center font-semibold py-2.5 rounded-xl transition-all ${i === 1 ? 'bg-green-500 text-white hover:bg-green-400' : 'border-2 border-border text-foreground hover:border-green-500 hover:text-green-500'}`}>
-                  Get Started
-                </Link>
               </div>
             ))}
           </div>
+
+          <p className="text-center text-muted-foreground text-sm mt-8">
+            All plans include a 14-day free trial. No credit card required.
+          </p>
         </div>
       </section>
 
@@ -402,24 +549,54 @@ const Index = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-gradient-to-r from-green-500 to-emerald-600">
-        <div className="max-w-4xl mx-auto text-center">
-          <Globe className="w-12 h-12 text-white/80 mx-auto mb-4" />
-          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4">
-            Ready to Take Your First Right Step?
-          </h2>
-          <p className="text-green-50 text-lg mb-8 max-w-xl mx-auto">
-            Join over 50,000 professionals who are actively growing their careers with RightStep.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/register" className="px-8 py-4 bg-white text-green-600 font-bold rounded-xl hover:bg-green-50 transition-colors shadow-lg hover:shadow-xl">
-              Start Free Trial — 14 Days
-            </Link>
-            <Link to="/mentors" className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-xl hover:bg-white/10 transition-colors">
-              Browse Mentors
-            </Link>
+      <section className="relative overflow-hidden noise-overlay">
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #14532d 0%, #166534 40%, #15803d 70%, #16a34a 100%)' }} />
+        {/* Decorative blobs */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
+        <div className="absolute inset-0 grid-pattern opacity-10" />
+
+        <div className="relative section-padding">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Icon */}
+            <div className="w-16 h-16 bg-white/15 rounded-2xl flex items-center justify-center mx-auto mb-6 backdrop-blur-sm border border-white/20">
+              <Globe className="w-8 h-8 text-white" />
+            </div>
+
+            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-5 tracking-tight">
+              Ready to Take Your
+              <br />
+              First Right Step?
+            </h2>
+            <p className="text-green-100/90 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+              Join over 50,000 professionals who are actively growing their careers with RightStep.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+              <Link
+                to="/register"
+                className="px-8 py-4 bg-white text-green-700 font-bold rounded-xl hover:bg-green-50 transition-all duration-200 shadow-xl shadow-black/20 hover:shadow-2xl hover:-translate-y-0.5 text-base"
+              >
+                Start Free Trial — 14 Days
+              </Link>
+              <Link
+                to="/mentors"
+                className="px-8 py-4 bg-white/10 border border-white/25 text-white font-semibold rounded-xl hover:bg-white/20 hover:border-white/40 transition-all duration-200 backdrop-blur-sm text-base"
+              >
+                Browse Mentors →
+              </Link>
+            </div>
+
+            {/* Trust row */}
+            <div className="flex flex-wrap items-center justify-center gap-6 text-green-100/70 text-sm">
+              {['No credit card required', 'Cancel anytime', '14-day free trial'].map(item => (
+                <span key={item} className="flex items-center gap-1.5">
+                  <CheckCircle className="w-3.5 h-3.5 text-green-300" />
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
-          <p className="text-green-100 text-sm mt-4">No credit card required • Cancel anytime</p>
         </div>
       </section>
     </div>
